@@ -1,0 +1,117 @@
+
+<header>
+  
+  <h1>DROID <span>5.0</span></h1>
+  <p class="tagline">Registration Portal</p>
+</header>
+
+<div class="stats-bar">
+  <div class="stat-item">
+    <span class="stat-num">Jul 2026</span>
+    <span class="stat-label">Event Date</span>
+  </div>
+  <div class="stat-divider"></div>
+  <div class="stat-item">
+    <span class="stat-num">₹500</span>
+    <span class="stat-label">IEEE Members</span>
+  </div>
+  <div class="stat-divider"></div>
+  <div class="stat-item">
+    <span class="stat-num">₹800</span>
+    <span class="stat-label">Non-IEEE Members</span>
+  </div>
+  <div class="stat-divider"></div>
+  <div class="stat-item">
+    <span class="stat-num">IEEE</span>
+    <span class="stat-label">Certified</span>
+  </div>
+</div>
+
+<div class="page-center">
+
+  <div class="form-container fade-in">
+
+    <div class="form-heading">
+      <div class="form-heading-meta">
+        <span class="form-index">01</span>
+        <span class="form-rule"></span>
+      </div>
+      <div>
+        <h2>Register</h2>
+        <p class="form-sub">Fill in your details to secure your seat at DROID 5.0</p>
+      </div>
+    </div>
+
+    <form id="registrationForm">
+
+      <label class="input-hint">Full Name</label>
+      <input type="text" id="fullname" placeholder="Enter your full name" required>
+
+      <label class="input-hint">Email Address</label>
+      <input type="email" id="email" placeholder="you@example.com" required>
+
+      <label class="input-hint">College / Institution</label>
+      <input type="text" id="college" placeholder="FISAT" required>
+
+      <label class="input-hint">Membership Status</label>
+      <div class="membership-options">
+        <label class="option-card">
+          <input type="radio" name="ieee_status" value="no" checked onchange="updateUI()">
+          <span class="option-label">Non-IEEE Member</span>
+        </label>
+        <label class="option-card">
+          <input type="radio" name="ieee_status" value="yes" onchange="updateUI()">
+          <span class="option-label">IEEE Member</span>
+        </label>
+      </div>
+
+      <div id="ieeeIdWrapper">
+        <label class="input-hint">IEEE Membership ID</label>
+        <input type="text" id="ieeeId" placeholder="Enter your IEEE ID">
+      </div>
+
+      <div class="price-box">
+        <div>
+          <p class="price-label">Final Amount</p>
+          <p id="discountLabel" class="discount-label"></p>
+        </div>
+        <span id="priceDisplay">₹800</span>
+      </div>
+
+      <button type="submit" class="btn-submit">Proceed to Checkout</button>
+
+    </form>
+
+    <a class="return-link" routerLink="/home">← Return Home</a>
+
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-brand">DROID <span>5.0</span></div>
+  <div class="footer-text">Presented by IEEE RAS SBC FISAT &amp; IEEE FISAT SB</div>
+  <div class="footer-copy">&copy; 2026 Federal Institute of Science And Technology. All rights reserved.</div>
+</footer>
+
+<script>
+  function updateUI() {
+    const status = document.querySelector('input[name="ieee_status"]:checked').value;
+    const idWrapper = document.getElementById('ieeeIdWrapper');
+    const priceDisplay = document.getElementById('priceDisplay');
+    const discountLabel = document.getElementById('discountLabel');
+    const idInput = document.getElementById('ieeeId');
+
+    if (status === 'yes') {
+      idWrapper.classList.add('active');
+      idInput.setAttribute('required', 'true');
+      priceDisplay.innerText = '₹500';
+      discountLabel.innerText = 'IEEE DISCOUNT APPLIED';
+    } else {
+      idWrapper.classList.remove('active');
+      idInput.removeAttribute('required');
+      priceDisplay.innerText = '₹800';
+      discountLabel.innerText = '';
+    }
+  }
+</script>
